@@ -1,0 +1,38 @@
+{
+  "userInformations" : [ {
+    "id" : 2,
+    "name" : "Ervin Howell",
+    "address" : {
+      "city" : "Wisokyburgh"
+    },
+    "phone-number" : "010-692-6593 x09125"
+  }, {
+    "id" : 4,
+    "name" : "Patricia Lebsack",
+    "address" : {
+      "city" : "South Elvis"
+    },
+    "phone-number" : "493-170-9623 x156"
+  }, {
+    "id" : 6,
+    "name" : "Mrs. Dennis Schulist",
+    "address" : {
+      "city" : "South Christy"
+    },
+    "phone-number" : "1-477-935-8478 x6430"
+  }, {
+    "id" : 8,
+    "name" : "Nicholas Runolfsdottir V",
+    "address" : {
+      "city" : "Aliyaview"
+    },
+    "phone-number" : "586.493.6943 x140"
+  }, {
+    "id" : 10,
+    "name" : "Clementina DuBuque",
+    "address" : {
+      "city" : "Lebsackbury"
+    },
+    "phone-number" : "024-648-3804"
+  } ]
+}
