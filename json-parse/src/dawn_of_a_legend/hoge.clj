@@ -46,6 +46,9 @@ comment(
         (apply + 1 2 '(3 4))
         (def A [[1 2] [3 4]])
         (apply map vector A) 
+
+        (= (- 10 (* 2 3)) 4)
+        (= "HELLO WORLD" (.toUpperCase "hello world"))
         )
         
-     
+    
