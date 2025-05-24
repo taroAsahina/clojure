@@ -1,0 +1,16 @@
+{:duct.profile/base
+ {:duct.core/project-ns flights-api
+ :flights-api.handler.v1.systems/ping {}}
+
+ :duct.profile/dev   #duct/include "dev"
+ :duct.profile/local #duct/include "local"
+ :duct.profile/prod  {}
+
+ :duct.module/logging {}
+ :duct.module.web/api {}
+ 
+ :duct.module/ataraxy
+ {"/v1"
+  {"/systems"
+   {"/ping"
+    {:get [:v1.systems/ping]}}}}}
