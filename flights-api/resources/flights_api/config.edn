@@ -1,7 +1,7 @@
 {:duct.profile/base
  {:duct.core/project-ns flights-api
   :flights-api.handler.v1.systems/ping {}
-  :flights-api.handler.v1/special-offers {}}
+  :flights-api.handler.v1.special-offer/get-special-offers {}}
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
@@ -12,5 +12,5 @@
  
  :duct.module/ataraxy
  {"/v1"
-  {"/systems" {["/ping" :get] [:systems/ping]}
-   "/special-offers" {:get [:special-offer/get-special-offers]}}}}
+  {"/systems" {["/ping" :get] [:v1.systems/ping]}
+   "/special-offers" {:get [:v1.special-offer/get-special-offers]}}}}

@@ -36,8 +36,8 @@ You can configure this with the setting:
 ;   - See https://calva.io/connect-sequences/
 ; 
 
-; Starting Jack-in: (cd /home/user1/practice/clojure/flights-api; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless)
-; Using host:port 127.0.0.1:36749 ...
+; Starting Jack-in: (cd /home/user1/practice/clojure/flights-api; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless)
+; Using host:port 127.0.0.1:41385 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
@@ -48,28 +48,51 @@ about why stdout printed to this file is prepended with `;` to be line comments.
 clj꞉user꞉> 
 ; Jack-in done.
 clj꞉user꞉> 
-; Evaluating file: project.clj
-; 
-; Syntax error compiling at (project.clj:1:1).
-; Unable to resolve symbol: defproject in this context
-; Evaluation of file project.clj failed: class clojure.lang.Compiler$CompilerException
-clj꞉user꞉> 
-; Syntax error compiling at (project.clj:1:1).
-; Unable to resolve symbol: defproject in this context
-clj꞉user꞉> 
-nil
-clj꞉flights-api.handler.v1.systems꞉> 
-; Syntax error compiling at (src/flights_api/handler/v1/systems.clj:9:1).
-; No such namespace: ig
-clj꞉flights-api.handler.v1.systems꞉> 
-nil
-clj꞉flights-api.handler.v1.systems꞉> 
-; Syntax error compiling at (src/flights_api/handler/v1/systems.clj:10:1).
-; Unable to resolve symbol: ping in this context
-clj꞉flights-api.handler.v1.systems꞉> 
-; Evaluating file: systems.clj
-#multifn[init-key 0x498638e6]
-clj꞉flights-api.handler.v1.systems꞉> 
+(dev)
+:loaded
+clj꞉dev꞉> 
+:loaded
+:loaded
+clj꞉dev꞉> 
+(go)
+; Execution error (ExceptionInfo) at integrant.core/missing-refs-exception (core.cljc:191).
+; Missing definitions for refs: :flights-api.handler.systems/ping, :flights-api.handler.special-offer/get-special-offers
+clj꞉dev꞉> 
+(go)
+; Execution error (ExceptionInfo) at integrant.core/missing-refs-exception (core.cljc:191).
+; Missing definitions for refs: :flights-api.handler.systems/ping, :flights-api.handler.special-offer/get-special-offers
+clj꞉dev꞉> 
+(go)
+; Execution error (ExceptionInfo) at integrant.core/missing-refs-exception (core.cljc:191).
+; Missing definitions for refs: :flights-api.handler.systems/ping, :flights-api.handler.special-offer/get-special-offers
+clj꞉dev꞉> 
+(go)
+; Execution error (ExceptionInfo) at integrant.core/missing-refs-exception (core.cljc:191).
+; Missing definitions for refs: :flights-api.handler.flights-api.handler.v1.systems/ping, :flights-api.handler.flights-api.handler.v1/special-offers
+clj꞉dev꞉> 
+(go)
+; Execution error (IllegalArgumentException) at integrant.core/try-build-action (core.cljc:292).
+; No method in multimethod 'init-key' for dispatch value: :flights-api.handler.v1/special-offers
+clj꞉dev꞉> 
+(go)
+; Execution error (IllegalArgumentException) at integrant.core/try-build-action (core.cljc:292).
+; No method in multimethod 'init-key' for dispatch value: :flights-api.handler.v1/special-offers
+clj꞉dev꞉> 
+(go)
+; Execution error (IllegalArgumentException) at integrant.core/try-build-action (core.cljc:292).
+; No method in multimethod 'init-key' for dispatch value: :flights-api.handler.v1.special-offer/get-special-offers
+clj꞉dev꞉> 
+(go)
+; Execution error (IllegalArgumentException) at integrant.core/try-build-action (core.cljc:292).
+; No method in multimethod 'init-key' for dispatch value: :flights-api.handler.v1.special-offer/get-special-offers
+clj꞉dev꞉> 
+; Evaluating file: special_offer.clj
+#multifn[init-key 0x5b90991c]
+clj꞉flights-api.handler.v1.special-offer꞉> 
+(dev)
+; Syntax error compiling at (.calva/output-window/output.calva-repl:92:1).
+; Unable to resolve symbol: dev in this context
+clj꞉flights-api.handler.v1.special-offer꞉> 
 ; nREPL Connection was closed
 ; Jacking in...
 ; Connecting using "Leiningen" project type.
@@ -78,7 +101,7 @@ clj꞉flights-api.handler.v1.systems꞉> 
 ; 
 
 ; Starting Jack-in: (cd /home/user1/practice/clojure/flights-api; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless)
-; Using host:port 127.0.0.1:43185 ...
+; Using host:port 127.0.0.1:44839 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
@@ -93,15 +116,133 @@ clj꞉dev꞉> 
 ; :duct.server.http.jetty/starting-server {:port 3000}
 :initiated
 clj꞉dev꞉> 
-(halt)
-; :duct.server.http.jetty/stopping-server
-(monitor-exit)
+#'flights-api.handler.v1.special-offer/get-special-offers
+clj꞉flights-api.handler.v1.special-offer꞉> (dev)
+; Syntax error compiling at (.calva/output-window/output.calva-repl:120:44).
+; Unable to resolve symbol: dev in this context
+clj꞉flights-api.handler.v1.special-offer꞉> 
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in: (cd /home/user1/practice/clojure/flights-api; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless)
+; Using host:port 127.0.0.1:46755 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+(dev)
+:loaded
 clj꞉dev꞉> 
-:halted
-; Execution error (NullPointerException) at dev/eval24799 (REPL:100).
-; Cannot exit synchronized block because "null" is null
+(go)
+; :duct.server.http.jetty/starting-server {:port 3000}
+:initiated
 clj꞉dev꞉> 
-(exit)
-; Syntax error compiling at (.calva/output-window/output.calva-repl:104:1).
-; Unable to resolve symbol: exit in this context
+(reset)
+; :reloading (flights-api.handler.v1.systems flights-api.use-case.special-offer flights-api.handler.v1.special-offer dev flights-api.main user)
+:resumed
 clj꞉dev꞉> 
+; "o" nil ", locale" nil ", currency" nil
+; "o" nil ", locale" nil ", currency" nil
+(reset)
+; :reloading (flights-api.handler.v1.special-offer)
+:resumed
+clj꞉dev꞉> 
+; "o" nil ", locale" nil ", currency" nil
+
+
+(reset)
+; :reloading (flights-api.handler.v1.special-offer)
+:resumed
+clj꞉dev꞉> 
+(reset)
+; :reloading (flights-api.handler.v1.special-offer)
+:resumed
+clj꞉dev꞉> 
+; "o" nil ", locale" nil ", currency" nil
+; "o" nil ", locale" nil ", currency" nil
+(reset)
+; :reloading (flights-api.handler.v1.special-offer)
+:resumed
+clj꞉dev꞉> 
+; "--- Request received ---"
+; "Full request map keys:" (:ssl-client-cert :protocol :remote-addr :params :route-params :headers :server-port :muuntaja/request :ataraxy/result :content-length :form-params :query-params :content-type :character-encoding :uri :server-name :query-string :muuntaja/response :body :scheme :request-method)
+; "Request query-params:" {"origin" "NRT", "locale" "ja_JP", "currency" "JPY"}
+; "Extracted with string keys: o" "NRT" ", locale" "ja_JP" ", currency" "JPY"
+; "--- Request received ---"
+; "Full request map keys:" (:ssl-client-cert :protocol :remote-addr :params :route-params :headers :server-port :muuntaja/request :ataraxy/result :content-length :form-params :query-params :content-type :character-encoding :uri :server-name :query-string :muuntaja/response :body :scheme :request-method)
+; "Request query-params:" {"origin" "NRT", "locale" "ja_JP", "currency" "JPY"}
+; "Extracted with string keys: o" "NRT" ", locale" "ja_JP" ", currency" "JPY"
+(reset)
+; :reloading (flights-api.use-case.special-offer flights-api.handler.v1.special-offer)
+:resumed
+clj꞉dev꞉> 
+; "--- Request received ---"
+; "Full request map keys:" (:ssl-client-cert :protocol :remote-addr :params :route-params :headers :server-port :muuntaja/request :ataraxy/result :content-length :form-params :query-params :content-type :character-encoding :uri :server-name :query-string :muuntaja/response :body :scheme :request-method)
+; "Request query-params:" {"origin" "NRT", "locale" "ja_JP", "currency" "JPY"}
+; "Extracted with string keys: o" "NRT" ", locale" "ja_JP" ", currency" "JPY"
+(reset)
+; :reloading (flights-api.handler.v1.special-offer)
+:resumed
+clj꞉dev꞉> 
+
+; o nil , locale nil , currency nil
+(reset)
+; :reloading (flights-api.handler.v1.special-offer)
+:resumed
+clj꞉dev꞉> 
+; "--- Request received ---"
+; "Full request map keys:" (:ssl-client-cert :protocol :remote-addr :params :route-params :headers :server-port :muuntaja/request :ataraxy/result :content-length :form-params :query-params :content-type :character-encoding :uri :server-name :query-string :muuntaja/response :body :scheme :request-method)
+; "Request query-params:" {"origin" "NRT", "locale" "ja_JP", "currency" "JPY"}
+; "Extracted with string keys: o" "NRT" ", locale" "ja_JP" ", currency" "JPY"
+(reset)
+; :reloading (flights-api.handler.v1.special-offer)
+:resumed
+clj꞉dev꞉> 
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in: (cd /home/user1/practice/clojure/flights-api; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless)
+; Using host:port 127.0.0.1:38229 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> (dev)
+:loaded
+clj꞉dev꞉> 
+(go)
+; :duct.server.http.jetty/starting-server {:port 3000}
+:initiated
+clj꞉dev꞉> 
+; "Destructured query params: origin=" nil ", locale=" nil ", currency=" nil
+(reset)
+; :reloading (flights-api.handler.v1.systems flights-api.use-case.special-offer flights-api.handler.v1.special-offer dev flights-api.main user)
+:resumed
+clj꞉dev꞉> 
+; {"origin" "jpn"}
+; "Destructured query params: origin=" nil ", locale=" nil ", currency=" nil
+; {"origin" "jpn", "locale" "ja", "currency" "jpn"}
+; "Destructured query params: origin=" nil ", locale=" nil ", currency=" nil
+(reset)
+; :reloading (flights-api.handler.v1.special-offer)
+:resumed
+clj꞉dev꞉> 
+; {"origin" "jpn", "locale" "ja", "currency" "jpn"}
+; "Destructured query params: origin=" "jpn" ", locale=" "ja" ", currency=" "jpn"
+; {"origin" "jpn", "locale" "ja"}
+; "Destructured query params: origin=" "jpn" ", locale=" "ja" ", currency=" nil
+; {"origin" "jpn", "locale" "ja", "cu" "aa"}
+; "Destructured query params: origin=" "jpn" ", locale=" "ja" ", currency=" nil
