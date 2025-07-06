@@ -20,6 +20,18 @@
 (defn ranked-words [words]
   (sort-by calc-word-score #(compare %2 %1) words))
 
+(defn more-than-n [numbers n]
+  (filter #(> % n) numbers))
+
+(defn divide-by-n [numbers n]
+  (filter #(= 0 (mod % n)) numbers))
+
+(defn less-than-n [numbers n]
+  (filter #(< % n) numbers))
+
+(defn include-s-more-than-n [words n]
+  (filter #(<= n (count (filter #{\s} %))) words))
+
 (comment
   (ranked-words ["java" "scala" "clojure" "kotlin"])
 
@@ -42,5 +54,7 @@
   (sort-by calc-word-score > words)
 
   (sort #(compare %2 %1) [:a :b :c])
-  (sort-by identity #(compare %2 %1) [:a :b :c])  ; identityで要素自体を比較
-  )
+  (sort-by identity #(compare %2 %1) [:a :b :c])
+
+  (compare "abc" "eef")
+  (int \a))
