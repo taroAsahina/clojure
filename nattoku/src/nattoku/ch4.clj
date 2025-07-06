@@ -21,17 +21,26 @@
   (sort-by calc-word-score #(compare %2 %1) words))
 
 (comment
-  (calc-word-score "java")
-  (calc-word-score "scala")
-  (calc-word-score "clojure")
-  (calc-word-score "kotlin")
   (ranked-words ["java" "scala" "clojure" "kotlin"])
-  
-  (map #(calc-word-score %) ["java" "scala" "clojure" "kotlin"]) 
+
+  (map #(calc-word-score %) ["java" "scala" "clojure" "kotlin"])
 
   (def words ["java" "scala" "clojure" "kotlin"])
 
   (sort-by calc-word-score #(compare %2 %1) words)
   (reverse (sort-by calc-word-score words))
   (sort-by #(calc-word-score %) #(compare %2 %1) words)
-  (sort-by calc-word-score #(compare %2 %1) words))
+  (sort-by calc-word-score #(compare %2 %1) words)
+  (sort #(> (calc-word-score %1) (calc-word-score %2)) words)
+  (sort #(apply > (map calc-word-score %)) words)
+  (sort #(apply > (map calc-word-score %&)) words)
+  (sort #(> (calc-word-score %1) (calc-word-score %2)) words)
+
+  (sort-by calc-word-score #(compare %2 %1) words)
+  (sort-by calc-word-score #(- (compare %1 %2)) words)  ; compare + - で降順
+  (sort-by calc-word-score #(> %1 %2) words)
+  (sort-by calc-word-score > words)
+
+  (sort #(compare %2 %1) [:a :b :c])
+  (sort-by identity #(compare %2 %1) [:a :b :c])  ; identityで要素自体を比較
+  )
