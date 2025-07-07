@@ -32,6 +32,20 @@
 (defn include-s-more-than-n [words n]
   (filter #(<= n (count (filter #{\s} %))) words))
 
+(defn sum-of-numbers [numbers]
+  (reduce + numbers))
+
+(defn sum-of-word-lengths [words]
+  (let [word-length (map count words)]
+    (reduce + word-length)))
+
+(defn count-include-s [words]
+  (let [include-s-word (filter #(str/includes? % "s") words)]
+    (count include-s-word)))
+
+(defn max-of-numbers [numbers]
+  (reduce max numbers))
+
 (comment
   (ranked-words ["java" "scala" "clojure" "kotlin"])
 
@@ -57,4 +71,9 @@
   (sort-by identity #(compare %2 %1) [:a :b :c])
 
   (compare "abc" "eef")
-  (int \a))
+  (int \a)
+  
+  (defn count-include-s2 [words]
+    (let [s-count (map #(if (str/includes? % "s") 1 0) words)]
+      (reduce + s-count)))
+  (count-include-s2 ["clojure" "scala" "java" "kotlin"]))
