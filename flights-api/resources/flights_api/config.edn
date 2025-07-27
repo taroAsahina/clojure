@@ -12,5 +12,6 @@
  
  :duct.module/ataraxy
  {"/v1"
-  {"/systems" {["/ping" :get] [:v1.systems/ping]}
-   "/special-offers" {:get [:v1.special-offer/get-special-offers]}}}}
+  {"/systems"
+   {"/ping" {[:get] [:v1.systems/ping]}}
+   "/special-offers" {[:get] [:v1.special-offer/get-special-offers]}}}}
