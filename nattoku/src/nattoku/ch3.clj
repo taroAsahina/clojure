@@ -26,7 +26,3 @@
         other (drop (count first-two) list)]
     (concat other first-two)))
 
-
-(comment
-  (abbreviate "taro asahia")
-  (initial-uppercase "taro"))

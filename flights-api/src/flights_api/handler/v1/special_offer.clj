@@ -2,9 +2,8 @@
   (:require [integrant.core :as ig]
             [flights-api.use-case.special-offer :as special-offer-use-case]))
 
-;; strsじゃなくてkeysのほうがよい？
 (defn get-special-offers
-  [deps {{:strs [origin locale currency] :as query-params-map} :query-params}]
+  [deps {{:keys [origin locale currency] :as query-params-map} :params}]
   (if query-params-map
     (do
       (prn query-params-map)
