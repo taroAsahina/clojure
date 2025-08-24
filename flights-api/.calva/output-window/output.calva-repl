@@ -37,7 +37,7 @@ You can configure this with the setting:
 ; 
 
 ; Starting Jack-in: (cd /home/user1/practice/clojure/flights-api; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless)
-; Using host:port 127.0.0.1:34915 ...
+; Using host:port 127.0.0.1:33945 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
@@ -48,120 +48,23 @@ about why stdout printed to this file is prepended with `;` to be line comments.
 clj꞉user꞉> 
 ; Jack-in done.
 clj꞉user꞉> 
-nil
-clj꞉flights-api.usecase.special-offer-test꞉> 
-(in-ns 'dev)
-#namespace[dev]
-clj꞉dev꞉> 
-(go)
-; Syntax error compiling at (.calva/output-window/output.calva-repl:56:1).
-; Unable to resolve symbol: go in this context
-clj꞉dev꞉> 
-(in-ns 'user)
-#namespace[user]
-clj꞉user꞉> 
-(dev)
-:loaded
-clj꞉dev꞉> 
-(go)
-; :duct.server.http.jetty/starting-server {:port 3000}
-; Execution error (BindException) at sun.nio.ch.Net/bind0 (Net.java:-2).
-; Address already in use
-clj꞉dev꞉> 
-; Evaluating file: special_offer_test.clj
-#'flights-api.usecase.special-offer-test/execute-test
-clj꞉flights-api.usecase.special-offer-test꞉> 
-; Running test: execute-test…
-; "origin" nil "locale" nil "currency" nil
-; FAIL in flights-api.usecase.special-offer-test/execute-test (special_offer_test.clj:10):
-; execute
-; expected:
-(=
- {:flights
-  [{:airline "ANA",
-    :currency "JPY",
-    :departure-at "2025-09-04T10:45:00+09:00",
-    :destination {:airport "BKK", :iata-code "THA", :name "Bangkok"},
-    :duration 10000,
-    :origin {:airport "HND", :iata-code "TYO", :name "Tokyo"},
-    :price 10000}]}
- (sut/get-special-offers deps options))
-
-; actual:
-(not
- (=
-  {:flights
-   [{:airline "ANA",
-     :currency "JPY",
-     :departure-at "2025-09-04T10:45:00+09:00",
-     :destination {:airport "BKK", :iata-code "THA", :name "Bangkok"},
-     :duration 10000,
-     :origin {:airport "HND", :iata-code "TYO", :name "Tokyo"},
-     :price 10000}]}
-  {:body {:message "TODO"}, :headers {}, :status 200}))
-
-; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
-clj꞉flights-api.usecase.special-offer-test꞉> 
-; Execution error (FileNotFoundException) at flights-api.usecase.special-offer-test/eval25222$loading (REPL:1).
-; Could not locate mockfn/macros__init.class, mockfn/macros.clj or mockfn/macros.cljc on classpath.
-clj꞉flights-api.usecase.special-offer-test꞉> 
-; nREPL Connection was closed
-; Jacking in...
-; Connecting using "Leiningen" project type.
-; You can make Calva auto-select this.
-;   - See https://calva.io/connect-sequences/
-; 
-
-; Starting Jack-in: (cd /home/user1/practice/clojure/flights-api; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless)
-; Using host:port 127.0.0.1:42339 ...
-; Hooking up nREPL sessions ...
-; Connected session: clj
-; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
-nil
-clj꞉user꞉> 
-; Jack-in done.
-clj꞉user꞉> 
-nil
-clj꞉flights-api.usecase.special-offer-test꞉> 
-; Execution error (IllegalStateException) at flights-api.usecase.special-offer-test/eval11620$loading (REPL:1).
-; Alias sut already exists in namespace flights-api.usecase.special-offer-test, aliasing flights-api.handler.v1.special-offer
-clj꞉flights-api.usecase.special-offer-test꞉> 
-; Execution error (IllegalStateException) at flights-api.usecase.special-offer-test/eval11665$loading (REPL:1).
-; Alias sut already exists in namespace flights-api.usecase.special-offer-test, aliasing flights-api.handler.v1.special-offer
-clj꞉flights-api.usecase.special-offer-test꞉> 
-; nREPL Connection was closed
-; Jacking in...
-; Connecting using "Leiningen" project type.
-; You can make Calva auto-select this.
-;   - See https://calva.io/connect-sequences/
-; 
-
-; Starting Jack-in: (cd /home/user1/practice/clojure/flights-api; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless)
-; Using host:port 127.0.0.1:43173 ...
-; Hooking up nREPL sessions ...
-; Connected session: clj
-; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
-nil
-clj꞉user꞉> 
-; Jack-in done.
-clj꞉user꞉> 
 ; Evaluating file: special_offer_test.clj
 ; 
 ; ; clj  flights-api.usecase.special-offer-test 
-; Syntax error compiling at (test/flights_api/usecase/special_offer_test.clj:24:16).
-; No such var: sut/get-special-offers
+; Syntax error macroexpanding mockfn/providing at (test/flights_api/usecase/special_offer_test.clj:14:7).
+; Don't know how to create ISeq from: clojure.lang.Symbol
 ; Evaluation of file special_offer_test.clj failed: class clojure.lang.Compiler$CompilerException
-clj꞉flights-api.usecase.special-offer-test꞉> 
-nil
-clj꞉flights-api.usecase.special-offer-test꞉> 
-nil
-clj꞉flights-api.gateway.special-offer꞉> 
-nil
 clj꞉flights-api.usecase.special-offer-test꞉> 
 ; Evaluating file: special_offer_test.clj
 ; 
-; Syntax error compiling at (test/flights_api/usecase/special_offer_test.clj:38:16).
-; No such var: sut/get-special-offers
+; Syntax error macroexpanding mockfn/providing at (test/flights_api/usecase/special_offer_test.clj:14:7).
+; Don't know how to create ISeq from: clojure.lang.Symbol
+; Evaluation of file special_offer_test.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Evaluating file: special_offer_test.clj
+; 
+; Syntax error macroexpanding mockfn/providing at (test/flights_api/usecase/special_offer_test.clj:14:7).
+; Don't know how to create ISeq from: clojure.lang.Symbol
 ; Evaluation of file special_offer_test.clj failed: class clojure.lang.Compiler$CompilerException
 clj꞉flights-api.usecase.special-offer-test꞉> 
 ; Evaluating file: special_offer_test.clj
@@ -180,7 +83,7 @@ clj꞉flights-api.usecase.special-offer-test꞉> 
     :duration 10000,
     :origin {:airport "HND", :iata-code "TYO", :name "Tokyo"},
     :price 10000}]}
- (sut/execute deps options))
+ (sut/execute options))
 
 ; actual:
 (not
@@ -198,148 +101,388 @@ clj꞉flights-api.usecase.special-offer-test꞉> 
 ; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
 clj꞉flights-api.usecase.special-offer-test꞉> 
 ; Evaluating file: special_offer_test.clj
-#'flights-api.usecase.special-offer-test/execute-test
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test-with-different-options…
+; FAIL in flights-api.usecase.special-offer-test/execute-test-with-different-options (special_offer_test.clj:52):
+; execute with different options
+; expected:
+{:flights
+ [{:airline "JAL",
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :destination {:airport "JFK", :iata-code "USA", :name "New York"},
+   :duration 72000,
+   :origin {:airport "NRT", :iata-code "NRT", :name "Narita"},
+   :price 150000}]}
+
+; actual:
+{:message "TODO"}
+
+; diff:
+- {:flights
+ [{:airline "JAL",
+   :origin {:iata-code "NRT", :name "Narita", :airport "NRT"},
+   :destination {:iata-code "USA", :name "New York", :airport "JFK"},
+   :price 150000,
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :duration 72000}]}
+
++ {:message "TODO"}
+
+; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Evaluating file: special_offer_test.clj
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test-with-different-options…
+; FAIL in flights-api.usecase.special-offer-test/execute-test-with-different-options (special_offer_test.clj:48):
+; execute with different options
+; expected:
+{:flights
+ [{:airline "JAL",
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :destination {:airport "JFK", :iata-code "USA", :name "New York"},
+   :duration 72000,
+   :origin {:airport "NRT", :iata-code "NRT", :name "Narita"},
+   :price 150000}]}
+
+; actual:
+{:message "TODO"}
+
+; diff:
+- {:flights
+ [{:airline "JAL",
+   :origin {:iata-code "NRT", :name "Narita", :airport "NRT"},
+   :destination {:iata-code "USA", :name "New York", :airport "JFK"},
+   :price 150000,
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :duration 72000}]}
+
++ {:message "TODO"}
+
+; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Evaluating file: special_offer_test.clj
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test-with-different-options…
+; FAIL in flights-api.usecase.special-offer-test/execute-test-with-different-options (special_offer_test.clj:48):
+; execute with different options
+; expected:
+{:flights
+ [{:airline "JAL",
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :destination {:airport "JFK", :iata-code "USA", :name "New York"},
+   :duration 72000,
+   :origin {:airport "NRT", :iata-code "NRT", :name "Narita"},
+   :price 150000}]}
+
+; actual:
+{:message "TODO"}
+
+; diff:
+- {:flights
+ [{:airline "JAL",
+   :origin {:iata-code "NRT", :name "Narita", :airport "NRT"},
+   :destination {:iata-code "USA", :name "New York", :airport "JFK"},
+   :price 150000,
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :duration 72000}]}
+
++ {:message "TODO"}
+
+; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in: (cd /home/user1/practice/clojure/flights-api; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless)
+; Using host:port 127.0.0.1:38573 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+; Evaluating file: special_offer_test.clj
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test-with-different-options…
+; FAIL in flights-api.usecase.special-offer-test/execute-test-with-different-options (special_offer_test.clj:48):
+; execute with different options
+; expected:
+(= expected-result (sut/execute options))
+
+; actual:
+(not
+ (=
+  {:flights
+   [{:airline "JAL",
+     :currency "USD",
+     :departure-at "2025-09-05T14:30:00+09:00",
+     :destination {:airport "JFK", :iata-code "USA", :name "New York"},
+     :duration 72000,
+     :origin {:airport "NRT", :iata-code "NRT", :name "Narita"},
+     :price 150000}]}
+  {:message "TODO"}))
+
+; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Evaluating file: special_offer_test.clj
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
 clj꞉flights-api.usecase.special-offer-test꞉> 
 ; Running test: execute-test…
-; ERROR in flights-api.usecase.special-offer-test/execute-test (AFn.java:37):
-; execute
-; error: clojure.lang.ArityException: Wrong number of args (1) passed to: flights-api.use-case.special-offer/execute (AFn.java:37)
+; ERROR in flights-api.usecase.special-offer-test/execute-test (mock.cljc:24):
+; Uncaught exception, not in assertion
+; error: clojure.lang.ExceptionInfo: Expected flights_api.gateway.special_offer$get_special_offers@49a9d1c8 with arguments [{:origin "TYO", :locale "ja", :currency "JPY"}] exactly 1 times, received 0. {} (mock.cljc:24)
+; FAIL in flights-api.usecase.special-offer-test/execute-test-with-different-options (special_offer_test.clj:49):
+; execute with different options
 ; expected:
-(=
- {:flights
-  [{:airline "ANA",
-    :currency "JPY",
-    :departure-at "2025-09-04T10:45:00+09:00",
-    :destination {:airport "BKK", :iata-code "THA", :name "Bangkok"},
-    :duration 10000,
-    :origin {:airport "HND", :iata-code "TYO", :name "Tokyo"},
-    :price 10000}]}
- (sut/execute options))
+{:flights
+ [{:airline "JAL",
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :destination {:airport "JFK", :iata-code "USA", :name "New York"},
+   :duration 72000,
+   :origin {:airport "NRT", :iata-code "NRT", :name "Narita"},
+   :price 150000}]}
 
+; actual:
+{:message "TODO"}
+
+; diff:
+- {:flights
+ [{:airline "JAL",
+   :origin {:iata-code "NRT", :name "Narita", :airport "NRT"},
+   :destination {:iata-code "USA", :name "New York", :airport "JFK"},
+   :price 150000,
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :duration 72000}]}
+
++ {:message "TODO"}
+
+; 2 tests finished, problems found. 😭 errors: 1, failures: 1, ns: 1, vars: 2
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Evaluating file: special_offer_test.clj
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test-with-different-options…
+; FAIL in flights-api.usecase.special-offer-test/execute-test-with-different-options (special_offer_test.clj:52):
+; execute with different options
+; expected:
+{:flights
+ [{:airline "JAL",
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :destination {:airport "JFK", :iata-code "USA", :name "New York"},
+   :duration 72000,
+   :origin {:airport "NRT", :iata-code "NRT", :name "Narita"},
+   :price 150000}]}
+
+; actual:
+{:message "TODO"}
+
+; diff:
+- {:flights
+ [{:airline "JAL",
+   :origin {:iata-code "NRT", :name "Narita", :airport "NRT"},
+   :destination {:iata-code "USA", :name "New York", :airport "JFK"},
+   :price 150000,
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :duration 72000}]}
+
++ {:message "TODO"}
+
+; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Evaluating file: special_offer_test.clj
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test…
+; ERROR in flights-api.usecase.special-offer-test/execute-test (mock.cljc:23):
+; Uncaught exception, not in assertion
+; error: clojure.lang.ExceptionInfo: Expected flights_api.gateway.special_offer$get_special_offers@49a9d1c8 with arguments [{:origin "TYO", :locale "ja", :currency "JPY"}] exactly 1 times, received 0. {} (mock.cljc:23)
+; FAIL in flights-api.usecase.special-offer-test/execute-test-with-different-options (special_offer_test.clj:48):
+; execute with different options
+; expected:
+{:flights
+ [{:airline "JAL",
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :destination {:airport "JFK", :iata-code "USA", :name "New York"},
+   :duration 72000,
+   :origin {:airport "NRT", :iata-code "NRT", :name "Narita"},
+   :price 150000}]}
+
+; actual:
+{:message "TODO"}
+
+; diff:
+- {:flights
+ [{:airline "JAL",
+   :origin {:iata-code "NRT", :name "Narita", :airport "NRT"},
+   :destination {:iata-code "USA", :name "New York", :airport "JFK"},
+   :price 150000,
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :duration 72000}]}
+
++ {:message "TODO"}
+
+; 2 tests finished, problems found. 😭 errors: 1, failures: 1, ns: 1, vars: 2
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Evaluating file: special_offer_test.clj
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test-with-different-options…
+; FAIL in flights-api.usecase.special-offer-test/execute-test-with-different-options (special_offer_test.clj:47):
+; execute with different options
+; expected:
+{:flights
+ [{:airline "JAL",
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :destination {:airport "JFK", :iata-code "USA", :name "New York"},
+   :duration 72000,
+   :origin {:airport "NRT", :iata-code "NRT", :name "Narita"},
+   :price 150000}]}
+
+; actual:
+{:message "TODO"}
+
+; diff:
+- {:flights
+ [{:airline "JAL",
+   :origin {:iata-code "NRT", :name "Narita", :airport "NRT"},
+   :destination {:iata-code "USA", :name "New York", :airporclj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test-with-different-options…
+; FAIL in flights-api.usecase.special-offer-test/execute-test-with-different-options (special_offer_test.clj:47):
+; execute with different options
+; expected:
+{:flights
+ [{:airline "JAL",
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :destination {:airport "JFK", :iata-code "USA", :name "New York"},
+   :duration 72000,
+   :origin {:airport "NRT", :iata-code "NRT", :name "Narita"},
+   :price 150000}]}
+
+; actual:
+{:message "TODO"}
+
+; diff:
+- {:flights
+ [{:airline "JAL",
+   :origin {:iata-code "NRT", :name "Narita", :airport "NRT"},
+   :destination {:iata-code "USA", :name "New York", :airport "JFK"},
+   :price 150000,
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :duration 72000}]}
+
++ {:message "TODO"}
+
+; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1t "JFK"},
+   :price 150000,
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :duration 72000}]}
+
++ {:message "TODO"}
+
+; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test…
+; ERROR in flights-api.usecase.special-offer-test/execute-test (mock.cljc:23):
+; Uncaught exception, not in assertion
+; error: clojure.lang.ExceptionInfo: Expected flights_api.gateway.special_offer$get_special_offers@49a9d1c8 with arguments [{:origin "TYO", :locale "ja", :currency "JPY"}] exactly 1 times, received 0. {} (mock.cljc:23)
+; FAIL in flights-api.usecase.special-offer-test/execute-test-with-different-options (special_offer_test.clj:47):
+; execute with different options
+; expected:
+{:flights
+ [{:airline "JAL",
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :destination {:airport "JFK", :iata-code "USA", :name "New York"},
+   :duration 72000,
+   :origin {:airport "NRT", :iata-code "NRT", :name "Narita"},
+   :price 150000}]}
+
+; actual:
+{:message "TODO"}
+
+; diff:
+- {:flights
+ [{:airline "JAL",
+   :origin {:iata-code "NRT", :name "Narita", :airport "NRT"},
+   :destination {:iata-code "USA", :name "New York", :airport "JFK"},
+   :price 150000,
+   :currency "USD",
+   :departure-at "2025-09-05T14:30:00+09:00",
+   :duration 72000}]}
+
++ {:message "TODO"}
+
+; 2 tests finished, problems found. 😭 errors: 1, failures: 1, ns: 1, vars: 2
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Evaluating file: special_offer_test.clj
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test-with-different-options…
+; ERROR in flights-api.usecase.special-offer-test/execute-test-with-different-options (mock.cljc:45):
+; Uncaught exception, not in assertion
+; error: clojure.lang.ExceptionInfo: Expected flights_api.gateway.special_offer$get_special_offers@49a9d1c8 with arguments [{:origin "NRT", :locale "en", :currency "USD"}] exactly 1 times, received 0. {} (mock.cljc:45)
 ; 1 tests finished, problems found. 😭 errors: 1, failures: 0, ns: 1, vars: 1
 clj꞉flights-api.usecase.special-offer-test꞉> 
-; Evaluating file: special_offer.clj
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
 ; 
-; ; clj  flights-api.use-case.special-offer 
-; Syntax error compiling at (src/flights_api/use_case/special_offer.clj:6:3).
-; No such var: special-offer-gateway/get-special-offers
-; Evaluation of file special_offer.clj failed: class clojure.lang.Compiler$CompilerException
-clj꞉flights-api.use-case.special-offer꞉> 
-; Evaluating file: special_offer.clj
-; 
-; Syntax error compiling at (src/flights_api/use_case/special_offer.clj:6:3).
-; No such var: special-offer-gateway/get-special-offers
-; Evaluation of file special_offer.clj failed: class clojure.lang.Compiler$CompilerException
-clj꞉flights-api.use-case.special-offer꞉> 
-; Evaluating file: special_offer.clj
-#'flights-api.gateway.special-offer/get-special-offers
-clj꞉flights-api.gateway.special-offer꞉> 
-; Evaluating file: special_offer.clj
-#'flights-api.use-case.special-offer/execute
-clj꞉flights-api.use-case.special-offer꞉> 
+
+; Starting Jack-in: (cd /home/user1/practice/clojure/flights-api; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev repl :headless)
+; Using host:port 127.0.0.1:40589 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
 ; Evaluating file: special_offer_test.clj
-#'flights-api.usecase.special-offer-test/execute-test
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
 clj꞉flights-api.usecase.special-offer-test꞉> 
-; Running test: execute-test…
-; FAIL in flights-api.usecase.special-offer-test/execute-test (special_offer_test.clj:26):
-; execute
-; expected:
-{:flights
- [{:airline "ANA",
-   :currency "JPY",
-   :departure-at "2025-09-04T10:45:00+09:00",
-   :destination {:airport "BKK", :iata-code "THA", :name "Bangkok"},
-   :duration 10000,
-   :origin {:airport "HND", :iata-code "TYO", :name "Tokyo"},
-   :price 10000}]}
-
-; actual:
-{:message "TODO"}
-
-; diff:
-- {:flights
- [{:airline "ANA",
-   :origin {:iata-code "TYO", :name "Tokyo", :airport "HND"},
-   :destination {:iata-code "THA", :name "Bangkok", :airport "BKK"},
-   :price 10000,
-   :currency "JPY",
-   :departure-at "2025-09-04T10:45:00+09:00",
-   :duration 10000}]}
-
-+ {:message "TODO"}
-
-; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
+; Running test: execute-test-with-different-options…
+; ERROR in flights-api.usecase.special-offer-test/execute-test-with-different-options (mock.cljc:45):
+; Uncaught exception, not in assertion
+; error: clojure.lang.ExceptionInfo: Expected flights_api.gateway.special_offer$get_special_offers@34015893 with arguments [{:origin "NRT", :locale "en", :currency "USD"}] exactly 1 times, received 0. {} (mock.cljc:45)
+; 1 tests finished, problems found. 😭 errors: 1, failures: 0, ns: 1, vars: 1
 clj꞉flights-api.usecase.special-offer-test꞉> 
-#'flights-api.gateway.special-offer/get-special-offers
-clj꞉flights-api.gateway.special-offer꞉> 
-; Evaluating file: special_offer.clj
-#'flights-api.gateway.special-offer/get-special-offers
-clj꞉flights-api.gateway.special-offer꞉> 
 ; Evaluating file: special_offer_test.clj
-#'flights-api.usecase.special-offer-test/execute-test
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
+clj꞉flights-api.usecase.special-offer-test꞉> 
+; Running test: execute-test-with-different-options…
+; 1 tests finished, all passing 👍, ns: 1, vars: 1
+clj꞉flights-api.usecase.special-offer-test꞉> 
+#'flights-api.usecase.special-offer-test/execute-test-with-different-options
 clj꞉flights-api.usecase.special-offer-test꞉> 
 #'flights-api.usecase.special-offer-test/execute-test
 clj꞉flights-api.usecase.special-offer-test꞉> 
 ; Running test: execute-test…
-; FAIL in flights-api.usecase.special-offer-test/execute-test (NO_SOURCE_FILE:26):
-; execute
-; expected:
-{:flights
- [{:airline "ANA",
-   :currency "JPY",
-   :departure-at "2025-09-04T10:45:00+09:00",
-   :destination {:airport "BKK", :iata-code "THA", :name "Bangkok"},
-   :duration 10000,
-   :origin {:airport "HND", :iata-code "TYO", :name "Tokyo"},
-   :price 10000}]}
-
-; actual:
-{:message "TODO"}
-
-; diff:
-- {:flights
- [{:airline "ANA",
-   :origin {:iata-code "TYO", :name "Tokyo", :airport "HND"},
-   :destination {:iata-code "THA", :name "Bangkok", :airport "BKK"},
-   :price 10000,
-   :currency "JPY",
-   :departure-at "2025-09-04T10:45:00+09:00",
-   :duration 10000}]}
-
-+ {:message "TODO"}
-
-; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
-clj꞉flights-api.usecase.special-offer-test꞉> 
-; Evaluating file: special_offer_test.clj
-#'flights-api.usecase.special-offer-test/execute-test
-clj꞉flights-api.usecase.special-offer-test꞉> 
-; Running test: execute-test…
-; FAIL in flights-api.usecase.special-offer-test/execute-test (special_offer_test.clj:29):
-; execute
-; expected:
-{:flights
- [{:airline "ANA",
-   :currency "JPY",
-   :departure-at "2025-09-04T10:45:00+09:00",
-   :destination {:airport "BKK", :iata-code "THA", :name "Bangkok"},
-   :duration 10000,
-   :origin {:airport "HND", :iata-code "TYO", :name "Tokyo"},
-   :price 10000}]}
-
-; actual:
-{:message "TODO"}
-
-; diff:
-- {:flights
- [{:airline "ANA",
-   :origin {:iata-code "TYO", :name "Tokyo", :airport "HND"},
-   :destination {:iata-code "THA", :name "Bangkok", :airport "BKK"},
-   :price 10000,
-   :currency "JPY",
-   :departure-at "2025-09-04T10:45:00+09:00",
-   :duration 10000}]}
-
-+ {:message "TODO"}
-
-; 1 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
+; 2 tests finished, all passing 👍, ns: 1, vars: 2
 clj꞉flights-api.usecase.special-offer-test꞉> 
