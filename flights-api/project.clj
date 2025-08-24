@@ -7,7 +7,8 @@
                  [duct/module.ataraxy "0.3.0"]
                  [duct/module.logging "0.5.0"]
                  [duct/module.web "0.7.3"]
-                 [metosin/ring-http-response "0.9.5"]]
+                 [metosin/ring-http-response "0.9.5"]
+                 [nubank/mockfn "0.7.0"]]
   :plugins [[duct/lein-duct "0.12.3"]]
   :main ^:skip-aot flights-api.main
   :resource-paths ["resources" "target/resources"]

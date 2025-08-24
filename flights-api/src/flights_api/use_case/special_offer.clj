@@ -1,6 +1,6 @@
-(ns flights-api.use-case.special-offer)
+(ns flights-api.use-case.special-offer
+  (:require [flights-api.gateway.special-offer :as special-offer-gateway]))
 
 (defn execute
-  [_ _ _ _]
-  {:status 200
-   :body   {:message "TODO: Implement special_offer use case"}})
+  [options]
+  (special-offer-gateway/get-special-offers options))
