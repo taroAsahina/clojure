@@ -1,5 +1,7 @@
-(ns flights-api.gateway.special-offer)
+(ns flights-api.gateway.special-offer
+  (:require [flights-api.driver.special-offer :as driver]))
 
 (defn get-special-offers
   [options]
-  {:message "TODO"})
+  (driver/get-special-offers options))
+
