@@ -1,7 +1,12 @@
 {:duct.profile/base
  {:duct.core/project-ns flights-api
+
+  :flights-api.gateway.flight/flight-gateway
+  {:avaisales-api-url "https://api.travelpayouts.com"}
+
   :flights-api.handler.v1.systems/ping {}
-  :flights-api.handler.v1.special-offer/get-special-offers {}}
+  :flights-api.handler.v1.special-offer/get-special-offers
+  {:flight-gateway #ig/ref :flights-api.gateway.flight/flight-gateway}}
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
@@ -9,9 +14,8 @@
 
  :duct.module/logging {}
  :duct.module.web/api {}
- 
+
  :duct.module/ataraxy
  {"/v1"
-  {"/systems"
-   {"/ping" {[:get] [:v1.systems/ping]}}
+  {"/systems" {"/ping" {[:get] [:v1.systems/ping]}}
    "/special-offers" {[:get] [:v1.special-offer/get-special-offers]}}}}

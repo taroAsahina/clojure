@@ -3,6 +3,8 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.10.3"]
+                 [clj-http "3.13.1"]
+                 [cheshire "6.1.0"]
                  [duct/core "0.8.0"]
                  [duct/module.ataraxy "0.3.0"]
                  [duct/module.logging "0.5.0"]
