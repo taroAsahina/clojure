@@ -1,1 +1,0 @@
-["^ ","~$get-special-offers'",["^ ","~:row",6,"~:col",1,"~:fixed-arities",["~#set",[2]],"~:name","^0","~:ns","~$flights-api.gateway.flight","~:top-ns","^7","~:type","~:fn"],"~$new-flight-gateway",["^ ","^3",["^4",[1]],"~:private",true,"^6","^7","^5","^;","^9","^:","^2",1,"^8","^7","^1",14],"~:filename","/home/user1/practice/clojure/flights-api/src/flights_api/gateway/flight.clj"]
