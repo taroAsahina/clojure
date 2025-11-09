@@ -37,49 +37,32 @@
                                         (str value " " factor))) details-seq))]
     (str headline "\n\n" details)))
 
+(spit "output.tsv"
+      (let [data (->> (read-file "target.tsv")
+                      parse-lines
+                      keywordize-line
+                      (map (fn [line]
+                             (let [details (extract-details line)]
+                               {:global-id (:global-id line)
+                                :segment-id (:segment-id line)
+                                :year (:year line)
+                                :profit (combine-details details :profit)
+                                :revenue (combine-details details :revenue)}))))
+            columns [:global-id :segment-id :year :profit :revenue]
+            header (str/join "\t" (map name columns))
+            escape-field (fn [field]
+                           (if field
+                             (-> field
+                                 (str/replace "\\" "\\\\")
+                                 (str/replace "\n" "\\n")
+                                 (str/replace "\t" "\\t")
+                                 (str/replace "\r" "\\r"))
+                             ""))
+            rows (map (fn [row]
+                        (str/join "\t" (map #(escape-field (get row %)) columns))) data)]
+        (str/join "\n" (cons header rows))))
 
 (comment
-  (->> (read-file "target.tsv")
-       parse-lines
-       keywordize-line
-       (map (fn [line]
-              (let [details (extract-details line)]
-                {:global-id (:global-id line)
-                 :segment-id (:segment-id line)
-                 :year (:year line)
-                 :profit (combine-details details :profit)
-                 :revenue (combine-details details :revenue)}))))
-  
-  (spit "output.tsv"
-        (let [data (->> (read-file "target.tsv")
-                        parse-lines
-                        keywordize-line
-                        (map (fn [line]
-                               (let [details (extract-details line)]
-                                 {:global-id (:global-id line)
-                                  :segment-id (:segment-id line)
-                                  :year (:year line)
-                                  :profit (combine-details details :profit)
-                                  :revenue (combine-details details :revenue)}))))
-              columns [:global-id :segment-id :year :profit :revenue]
-              header (str/join "\t" (map name columns))
-              escape-field (fn [field]
-                            (if field
-                              (-> field
-                                  (str/replace "\\" "\\\\")
-                                  (str/replace "\n" "\\n")
-                                  (str/replace "\t" "\\t")
-                                  (str/replace "\r" "\\r"))
-                              ""))
-              rows (map (fn [row]
-                         (str/join "\t" (map #(escape-field (get row %)) columns))) data)]
-          (str/join "\n" (cons header rows))))
-
-
-
-
-
-
   (def sample {:global-id "JP3249600002",
                :segment-id "617281e1-1617-4206-ab3f-f3a388a45e9f",
                :year "2024",
@@ -91,5 +74,4 @@
                "[{\"factor\": \"産業・車載用部品の増収。\", \"revenue\": \"＋84.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}]}, {\"factor\": \"半導体関連部品における、汎用データセンター向けFCBGAの販売減少により。\", \"revenue\": \"▲138.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}, {\"type\": \"singlePage\", \"pageNumber\": 9}]}, {\"factor\": \"その他の増収。\", \"revenue\": \"＋33.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}]}]"})
 
   (extract-details sample)
-  (combine-details (extract-details sample) :profit)
-  )
+  (combine-details (extract-details sample) :profit))
