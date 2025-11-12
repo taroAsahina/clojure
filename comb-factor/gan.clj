@@ -7,15 +7,22 @@
 (defn- read-file [path]
   (str/split-lines (slurp path)))
 
-(defn- parse-lines [lines]
-  (map (fn [line]
-         (str/split line #"\t")) lines))
+(defn- parse-line [line]
+  (str/split line #"\t"))
 
-(defn- keywordize-line [lines]
+(defn- keywordize-line [columns record]
+  (zipmap columns record))
+
+(defn- parse-lines [lines]
+  (map parse-line lines))
+
+(defn- keywordize-lines [lines]
   (let [columns (map #(csk/->kebab-case-keyword %) (first lines))
         records (rest lines)]
     (map (fn [record]
-           (zipmap columns record)) records)))
+           (keywordize-line columns record)) records)))
+
+(defn- keywordize-details [])
 
 (defn- extract-details [line]
   (let [parsed-profit-details (json/read-value (:profit-details line))
@@ -37,7 +44,7 @@
                                         (str value " " factor))) details-seq))]
     (str headline "\n\n" details)))
 
-(spit "output.tsv"
+#_(spit "output.tsv"
       (let [data (->> (read-file "target.tsv")
                       parse-lines
                       keywordize-line
@@ -63,6 +70,20 @@
         (str/join "\n" (cons header rows))))
 
 (comment
+  (keywordize-lines (parse-lines (read-file "target.tsv")))
+
+  (-> "target.tsv"
+      read-file
+      parse-lines
+      keywordize-lines)
+  
+  (->> "target.tsv"
+       read-file
+       parse-lines
+       keywordize-lines
+       keywordize-details :profit)
+  
+
   (def sample {:global-id "JP3249600002",
                :segment-id "617281e1-1617-4206-ab3f-f3a388a45e9f",
                :year "2024",
@@ -74,4 +95,7 @@
                "[{\"factor\": \"産業・車載用部品の増収。\", \"revenue\": \"＋84.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}]}, {\"factor\": \"半導体関連部品における、汎用データセンター向けFCBGAの販売減少により。\", \"revenue\": \"▲138.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}, {\"type\": \"singlePage\", \"pageNumber\": 9}]}, {\"factor\": \"その他の増収。\", \"revenue\": \"＋33.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}]}]"})
 
   (extract-details sample)
-  (combine-details (extract-details sample) :profit))
+  (combine-details (extract-details sample) :profit) 
+  (json/read-value json-str {:key-fn keyword}) 
+ )
+  
