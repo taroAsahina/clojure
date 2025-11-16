@@ -119,6 +119,9 @@
 
   (->> sample
        (map (fn [line]
-              (join-details line "profit"))))
+              (-> line
+                  (assoc :profit (join-details line "profit"))
+                  (assoc :revenue (join-details line "revenue")))))
+       (slurp "output.tsv"))
   )
   
