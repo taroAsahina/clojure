@@ -22,7 +22,21 @@
     (map (fn [record]
            (keywordize-line columns record)) records)))
 
-(defn- keywordize-details [])
+(defn- comb-profit-factor [detail]
+  (str (get detail "profit") " " (get detail "factor")))
+
+(defn- extract-details-from-json [line keyword]
+  (let [details (json/read-value (keyword line))]
+    (map (fn [detail]
+           (comb-profit-factor detail)) details)))
+
+(defn- join-details [line k]
+  (let [headline (keyword (str k "-headline"))
+        details (keyword (str k "-details"))]
+    (->> (extract-details-from-json line details)
+         (str/join "\n")
+         (str (get line headline) "\n\n"))))
+
 
 (defn- extract-details [line]
   (let [parsed-profit-details (json/read-value (:profit-details line))
@@ -70,32 +84,41 @@
         (str/join "\n" (cons header rows))))
 
 (comment
-  (keywordize-lines (parse-lines (read-file "target.tsv")))
+  (keywordize-lines (parse-lines (read-file "target.tsv"))) 
 
-  (-> "target.tsv"
-      read-file
-      parse-lines
-      keywordize-lines)
-  
   (->> "target.tsv"
        read-file
        parse-lines
        keywordize-lines
-       keywordize-details :profit)
-  
+       (map (fn [line]
+              (join-details line "profit"))))
 
-  (def sample {:global-id "JP3249600002",
-               :segment-id "617281e1-1617-4206-ab3f-f3a388a45e9f",
-               :year "2024",
-               :profit-headline "-11.1億円と、前年比 ▲583.4億円の減益。",
-               :profit-details
-               "[{\"factor\": \"産業・車載用部品の減益。\", \"profit\": \"▲14.3億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 7}]}, {\"factor\": \"半導体関連部品における、有機材料事業における減収及び有形固定資産の減損損失等により。\", \"profit\": \"▲582.0億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 7}, {\"type\": \"singlePage\", \"pageNumber\": 9}]}, {\"factor\": \"その他の増益。\", \"profit\": \"＋12.9億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 7}]}]",
-               :revenue-headline "5,671.2億円と、前年比 ▲20.3億円, -0.4%の減収。",
-               :revenue-details
-               "[{\"factor\": \"産業・車載用部品の増収。\", \"revenue\": \"＋84.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}]}, {\"factor\": \"半導体関連部品における、汎用データセンター向けFCBGAの販売減少により。\", \"revenue\": \"▲138.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}, {\"type\": \"singlePage\", \"pageNumber\": 9}]}, {\"factor\": \"その他の増収。\", \"revenue\": \"＋33.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}]}]"})
+
+  (def sample [{:global-id "JP3249600002",
+                :segment-id "617281e1-1617-4206-ab3f-f3a388a45e9f",
+                :year "2024",
+                :profit-headline "-11.1億円と、前年比 ▲583.4億円の減益。",
+                :profit-details
+                "[{\"factor\": \"産業・車載用部品の減益。\", \"profit\": \"▲14.3億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 7}]}, {\"factor\": \"半導体関連部品における、有機材料事業における減収及び有形固定資産の減損損失等により。\", \"profit\": \"▲582.0億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 7}, {\"type\": \"singlePage\", \"pageNumber\": 9}]}, {\"factor\": \"その他の増益。\", \"profit\": \"＋12.9億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 7}]}]",
+                :revenue-headline "5,671.2億円と、前年比 ▲20.3億円, -0.4%の減収。",
+                :revenue-details
+                "[{\"factor\": \"産業・車載用部品の増収。\", \"revenue\": \"＋84.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}]}, {\"factor\": \"半導体関連部品における、汎用データセンター向けFCBGAの販売減少により。\", \"revenue\": \"▲138.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}, {\"type\": \"singlePage\", \"pageNumber\": 9}]}, {\"factor\": \"その他の増収。\", \"revenue\": \"＋33.8億円\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 6}]}]"}
+               {:global-id "JP3845750003",
+                :segment-id "6e7caf56-2f71-4536-bacc-dc07fb980c37",
+                :year "2024",
+                :profit-headline "金額不明ながら増益。",
+                :profit-details
+                "[{\"factor\": \"新規先拡販等による医療ガス出荷量の増加及び販売単価見直し等。\", \"profit\": \"＋　増益(金額不明)\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 14}]}]",
+                :revenue-headline "金額不明ながら増収。",
+                :revenue-details
+                "[{\"factor\": \"新規先拡販等による医療ガス出荷量の増加、販売単価の見直し、及び新型コロナウイルスの5類移行後の需要回復。\", \"revenue\": \"＋　増収(金額不明)\", \"citedPages\": [{\"type\": \"singlePage\", \"pageNumber\": 14}, {\"type\": \"singlePage\", \"pageNumber\": 15}]}]"}])
 
   (extract-details sample)
-  (combine-details (extract-details sample) :profit) 
-  (json/read-value json-str {:key-fn keyword}) 
- )
+  (combine-details (extract-details sample) :profit)
+  (json/read-value (:profit-details sample))
+
+  (->> sample
+       (map (fn [line]
+              (join-details line "profit"))))
+  )
   
